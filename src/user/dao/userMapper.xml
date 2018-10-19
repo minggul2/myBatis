@@ -25,6 +25,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update usertable set name = #{name}, pwd = #{pwd} where id = #{id}
 	</update>
 	
+	<select id = "userSearch" parameterType = "HashMap" >
+		<if test="">
+			select * from usertable where name like #{name}
+		</if>
+		<if test="">
+			select * from usertable where id like #{id} 
+		</if>
+	</select>
+	
 	
 	
 	

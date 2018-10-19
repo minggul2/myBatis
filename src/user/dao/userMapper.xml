@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userSQL">
+<!-- 변수명맞추기 -->
+	<resultMap type="user" id="userResult">	<!--  -->
+		<result property = "name" column = "name" />		<!--  property = DTO, column = 오라클 -->
+		<result property = "id" column = "id" />
+		<result property = "pwd" column = "pwd" />
+	</resultMap>
+	<insert id = "userWrtie" parameterType = "user">
+		insert into usertable values(#{name}, #{id}, #{pwd})
+	</insert>
+	
+	<select id = "userList" resultMap="userResult">		<!--  resultMap 위에 사용한 속성사용해줘야함 -->
+		select * from usertable
+	</select> 
+	
+	<select id = "userOne" parameterType = "String" resultType="user">
+		select * from usertable where id = #{id}
+	</select>
+	
+	<update id = "userModify" parameterType = "user" >
+		update usertable set name = #{name}, pwd = #{pwd} where id = #{id}
+	</update>
+	
+	
+	
+	
+</mapper>	

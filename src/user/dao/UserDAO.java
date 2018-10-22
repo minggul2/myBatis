@@ -2,6 +2,7 @@ package user.dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,12 +68,23 @@ public class UserDAO {
 		sqlSession.close();
 	}
 
-	public List<UserDTO> search(Map<String, String> map) {
+	public List<UserDTO> search(String colName, String value) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Map<String, String> map = new HashMap<>();
+		map.put("colName", colName);
+		map.put("value", value);
+		
 		List<UserDTO> list = sqlSession.selectList("userSQL.userSearch", map);
 		sqlSession.close();
 		return list;
 		
+	}
+
+	public void userDelete(String id) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.delete("userSQL.userDelete", id);
+		sqlSession.commit();
+		sqlSession.close();
 	}
 	
 	

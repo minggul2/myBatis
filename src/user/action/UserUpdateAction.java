@@ -12,6 +12,8 @@ public class UserUpdateAction implements UserAction {
 	public void execute() {
 		Scanner sc = new Scanner(System.in);
 		
+		
+		
 		System.out.print("수정할 아이디 입력 : ");
 		String id = sc.next(); 
 		UserDAO userDAO = UserDAO.getInstance();

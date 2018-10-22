@@ -31,7 +31,7 @@ public class UserSearchAction implements UserAction {
 		 */
 		//파라미터 개수  1 or 2
 		//
-		Map<String, String> map = new HashMap<>();
+		Map<String, String> map = new HashMap<String, String>();
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("	1. 이름 검색");
@@ -39,22 +39,30 @@ public class UserSearchAction implements UserAction {
 		System.out.print("번호 입력 : ");
 		int num = sc.nextInt();
 		
+		String colName = null;
+		String value = null;
+		
+		
 		if (num == 1) {
 			System.out.print("찾고자 하는 이름 입력  : ");
-			String name = sc.next();
-			map.put("name", name);
-		}
-		else {
+			value = sc.next();
+//			map.put("name", '%'+name+'%');
+//			map.put("id", "");
+			colName = "name";
+			
+		}else {
 			System.out.print("찾고자 하는 아이디 입력 : ");
-			String id = sc.next();
-			map.put("id", id);
+			value = sc.next();
+//			map.put("id", '%'+id+'%');
+//			map.put("name", "");
+			colName = "id";
 			
 		}
 		
 		
 		UserDAO userDAO = UserDAO.getInstance();
 		
-		List<UserDTO> list = userDAO.search(map);
+		List<UserDTO> list = userDAO.search(colName, value);
 		
 		for(UserDTO userDTO : list) {
 			System.out.println(userDTO.getName() + "\t" + userDTO.getId() + "\t" + userDTO.getPwd());

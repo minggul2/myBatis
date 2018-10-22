@@ -26,9 +26,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<!-- 이름으로 검색 혹은  아이디로 검색 -->
-	<select id = "userSearch" parameterType = "Map" resultMap = "userResult" >
-	
-		select * from usertable
+	<!-- <select id = "userSearch" parameterType = "Map" resultMap = "userResult" > -->
+	<select id = "userSearch" parameterType = "Map" resultType = "user" >
+		select * from usertable where ${colName} like '%'||#{value}||'%'
+		<!-- $는 글자 , #은 물음표 #은 상수, 리터럴 $는 그 자체를 뿌림-->
+	<!-- 	select * from usertable where name like #{name} or id like #{id} -->   
+		<!-- select * from usertable
 		<where>
 			<if test="name != null and name != ''">
 				name like '%'||#{name}||'%'
@@ -36,10 +39,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="id != null and id != ''">
 				id like '%'||#{id}||'%' 
 			</if>
-		</where>
+		</where> -->
 	</select>
 	
-	
+	<delete id = "userDelete" parameterType = "String">
+		delete usertable where id = #{id}
+	</delete>
 	
 	
 </mapper>	

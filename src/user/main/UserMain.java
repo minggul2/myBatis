@@ -22,6 +22,7 @@ public class UserMain {
 		className.put("select", "user.action.UserSelectAction");
 		className.put("delete", "user.action.UserDeleteAction");
 		className.put("update", "user.action.UserUpdateAction");
+		className.put("serach", "user.action.UserSearchAction");
 		
 		
 		Iterator it = className.keySet().iterator();
@@ -53,7 +54,7 @@ public class UserMain {
 			System.out.println();
 			System.out.println("----------------");
 			System.out.println("	1. 입력		");
-			System.out.println("	2. 출력		");
+			System.out.println("	2. 조회		");
 			System.out.println("	3. 수정		");
 			System.out.println("	4. 삭제		");
 			System.out.println("	5. 검색		");
@@ -73,7 +74,7 @@ public class UserMain {
 			}else if(num == 4) {
 				userAction = (UserAction)map.get("delete");
 			}else if(num == 5) {
-				userAction = (UserAction)map.get("select");
+				userAction = (UserAction)map.get("serach");
 			}
 			userAction.execute();
 		}
